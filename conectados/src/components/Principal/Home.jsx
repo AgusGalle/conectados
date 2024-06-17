@@ -3,17 +3,17 @@ import React from 'react'
 
 const Home = () => {
   return (
-    <Container fluid  className='w-100 '>
+    <Container fluid className='p-0' >
        <Carousel >
       <Carousel.Item>
-      <Image src="https://i.postimg.cc/ydgfhtb1/1.png" fluid  />;
+      <Image src="https://i.postimg.cc/hPMSf4XR/1.png" fluid  className="d-block w-100" />;
         
       </Carousel.Item>
       <Carousel.Item>
-      <Image src="https://i.postimg.cc/gJYyM5jF/2.png" fluid />;
+      <Image src="https://i.postimg.cc/JznRJwXD/2.png" fluid className="d-block w-100" />;
       </Carousel.Item>
       <Carousel.Item>
-      <Image src="https://i.postimg.cc/Y0067WQd/3.png" fluid />;
+      <Image src="https://i.postimg.cc/V6yw3dVn/3.png" fluid className="d-block w-100" />;
         
       </Carousel.Item>
     </Carousel>

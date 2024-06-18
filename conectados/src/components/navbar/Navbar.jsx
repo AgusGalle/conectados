@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import { IoPersonSharp } from "react-icons/io5";
-
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -11,29 +9,24 @@ const Navbar = () => {
 
   return (
     <div>
-      <nav className="shadow bg-neutral-950">
-        <div className="container px-4 py-2 mx-auto lg:flex lg:justify-between lg:items-center">
+      <nav className="shadow bg-stone-200">
+        <div className="container px-6 py-3 mx-auto lg:flex lg:justify-between lg:items-center">
           <div className="flex items-center justify-between">
-          <div className="flex items-center">
+            <div className="flex items-center">
               <a href="#">
-                <img className="w-auto h-6 sm:h-14" src="https://i.postimg.cc/137hMjd6/LOGO111.png" alt="Logo" />
+                <img className="w-auto h-8 sm:h-16" src="https://i.postimg.cc/137hMjd6/LOGO111.png" alt="Logo" />
               </a>
-              <span className="ml-2 text-sm sm:text-xl text-white dark:text-white">Contratalo</span>
-            </div>
-            <div className="hidden lg:flex lg:justify-center">
-              <a href="#" className="block px-3 py-2 mt-2 text-sm text-white rounded-lg dark:text-white lg:mx-4 lg:my-0">Home</a>
-              <a href="#" className="block px-3 py-2 mt-2 text-sm text-white rounded-lg dark:text-white lg:mx-4 lg:my-0">About</a>
-              <a href="#" className="block px-3 py-2 mt-2 text-sm text-white rounded-lg dark:text-white lg:mx-4 lg:my-0">Contact</a>
+              <span className="ml-3 text-lg sm:text-2xl text-black dark:text-black">CONTRATALO</span>
             </div>
             <div className="flex lg:hidden">
               <button
                 onClick={toggleMenu}
                 type="button"
-                className="text-white dark:text-white hover:text-white dark:hover:text-white focus:outline-none focus:text-white dark:focus:text-white"
+                className="text-black dark:text-black hover:text-black dark:hover:text-black focus:outline-none focus:text-black dark:focus:text-black"
                 aria-label="Toggle menu"
               >
                 <svg
-                  className={`${isOpen ? 'hidden' : 'block'} w-6 h-6`}
+                  className={`${isOpen ? 'hidden' : 'block'} w-8 h-8`}
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
@@ -44,7 +37,7 @@ const Navbar = () => {
                 </svg>
 
                 <svg
-                  className={`${isOpen ? 'block' : 'hidden'} w-6 h-6`}
+                  className={`${isOpen ? 'block' : 'hidden'} w-8 h-8`}
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
@@ -56,28 +49,46 @@ const Navbar = () => {
               </button>
             </div>
           </div>
-          <div className={`lg:flex lg:items-center lg:justify-center ${isOpen ? 'block' : 'hidden'} lg:mt-0 lg:p-0 lg:relative`}>
-            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-center lg:w-full">
+          <div className={`lg:flex lg:items-center lg:justify-end ${isOpen ? 'block' : 'hidden'} lg:mt-0 lg:p-0 lg:relative`}>
+            <div className="flex flex-col lg:flex-row lg:items-center lg:space-x-6 lg:w-full">
               <div className={`lg:hidden ${isOpen ? 'block' : 'hidden'}`}>
-                <a href="#" className="block px-3 py-2 mt-2 text-sm text-white rounded-lg dark:text-white lg:mx-4 lg:my-0">Home</a>
-                <a href="#" className="block px-3 py-2 mt-2 text-sm text-white rounded-lg dark:text-white lg:mx-4 lg:my-0">About</a>
-                <a href="#" className="block px-3 py-2 mt-2 text-sm text-white rounded-lg dark:text-white lg:mx-4 lg:my-0">Contact</a>
+                <a href="#" className="hidden px-1 py-2 mt-2 text-lg text-black rounded-lg dark:text-black lg:mx-4 lg:my-0 no-underline">
+                  <span className="hover:text-sky-200">Inicio</span>
+                </a>
+                <a href="#" className="hidden px-1 py-2 mt-2 text-lg text-black rounded-lg dark:text-black lg:mx-4 lg:my-0 no-underline">
+                  <span className="hover:text-sky-200">Trabaja</span>
+                </a>
+                <a href="#" className="hidden px-1 py-2 mt-2 text-lg text-black rounded-lg dark:text-black lg:mx-4 lg:my-0 no-underline">
+                  <span className="hover:text-sky-200">Contrata</span>
+                </a>
               </div>
+              <a href="#" className="block px-1 py-2 mt-2 text-xl text-black rounded-lg dark:text-black lg:mx-4 lg:my-0 no-underline">
+                  <span className="hover:text-sky-200">Inicio</span>
+                </a>
+                <a href="#" className="block px-1 py-2 mt-2 text-xl text-black rounded-lg dark:text-black lg:mx-4 lg:my-0 no-underline">
+                  <span className="hover:text-sky-200">Trabaja</span>
+                </a>
+                <a href="#" className="block px-1 py-2 mt-2 text-xl text-black rounded-lg dark:text-black lg:mx-4 lg:my-0 no-underline">
+                  <span className="hover:text-sky-200">Contrata</span>
+                </a>
               <div className="flex items-center lg:ml-4">
-              <div className="text-white dark:text-white block px-4 py-2 text-sm rounded-lg">
-              <IoPersonSharp size={25} className="cursor-pointer" />
-            </div>
+                <div className="lg:hidden">
+                  <button className="text-xl text-black dark:text-black px-6 py-1 mt-3 rounded-lg border border-black transition-colors hover:bg-sky-200 hover:text-white duration-300 mb-2 block">
+                    <span >Ingresa</span>
+                  </button>
+                  <button className="text-xl text-black dark:text-black px-6 py-1 mt-3 rounded-lg border border-black transition-colors  hover:bg-sky-200 hover:text-white duration-300 block">
+                    <span >Regístrate</span>
+                  </button>
+                </div>
+                <div className="hidden lg:flex items-center">
+                  <button className="text-xl text-black dark:text-black px-6 py-1  rounded-lg border border-black hover:bg-sky-200 hover:text-white transition-colors duration-300">
+                    Ingresa
+                  </button>
+                  <button className="text-xl text-black dark:text-black px-6 py-1 rounded-lg ml-4 border border-black hover:bg-sky-200 hover:text-white transition-colors duration-300">
+                    Regístrate
+                  </button>
+                </div>
               </div>
-            </div>
-          </div>
-        </div>
-        <div className={`lg:hidden ${isOpen ? 'hidden' : 'hidden'} absolute inset-x-0 bottom-0 z-20 bg-white dark:bg-cyan-200 px-4 py-5 transition-all duration-300 ease-in-out`}>
-          <div className="flex flex-col space-y-4">
-            <a href="#" className="block px-4 py-2 text-sm text-white rounded-lg dark:text-white">Home</a>
-            <a href="#" className="block px-4 py-2 text-sm text-white rounded-lg dark:text-white">About</a>
-            <a href="#" className="block px-4 py-2 text-sm text-white rounded-lg dark:text-white">Contact</a>
-            <div className="text-white dark:text-white block px-4 py-2 text-sm rounded-lg">
-              <IoPersonSharp size={25} className="cursor-pointer" />
             </div>
           </div>
         </div>

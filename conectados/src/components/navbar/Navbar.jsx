@@ -6,7 +6,7 @@ const Navbar = () => {
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
-
+ 
   return (
     <div>
       <nav className="shadow bg-stone-200">

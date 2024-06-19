@@ -9,14 +9,14 @@ const Navbar = () => {
  
   return (
     <div>
-      <nav className="shadow bg-stone-200">
+      <nav className="shadow bg-stone-200 fixed top-0 w-full z-10s">
         <div className="container px-6 py-3 mx-auto lg:flex lg:justify-between lg:items-center">
           <div className="flex items-center justify-between">
             <div className="flex items-center">
               <a href="#">
                 <img className="w-auto h-8 sm:h-16" src="https://i.postimg.cc/137hMjd6/LOGO111.png" alt="Logo" />
               </a>
-              <span className="ml-3 text-lg sm:text-2xl text-black dark:text-black">CONTRATALO</span>
+              <span className="ml-3 text-lg sm:text-2xl text-black dark:text-black"><b>CONTRATALO</b></span>
             </div>
             <div className="flex lg:hidden">
               <button

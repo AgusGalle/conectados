@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../../context/UserContext';
 
 const Navbar = () => {
+  const { isAuthenticated, logout } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
- 
+
   return (
     <div>
       <nav className="shadow bg-stone-200 fixed top-0 w-full z-10s">
@@ -74,20 +76,44 @@ const Navbar = () => {
               </Link>
               <div className="flex items-center lg:ml-4">
                 <div className="lg:hidden">
-                  <Link to="/login" className="text-xl text-black dark:text-black px-6 py-1 mt-3 rounded-lg border border-black transition-colors hover:bg-sky-200 hover:text-white duration-300 mb-2 block no-underline hover:no-underline">
-                    <span>Ingresa</span>
-                  </Link>
-                  <Link to="/register" className="text-xl text-black dark:text-black px-6 py-1 mt-3 rounded-lg border border-black transition-colors hover:bg-sky-200 hover:text-white duration-300 block no-underline hover:no-underline">
-                    <span>Regístrate</span>
-                  </Link>
+                  {!isAuthenticated && (
+                    <>
+                      <Link to="/login" className="text-xl text-black dark:text-black px-6 py-1 mt-3 rounded-lg border border-black transition-colors hover:bg-sky-200 hover:text-white duration-300 mb-2 block no-underline hover:no-underline">
+                        <span>Ingresa</span>
+                      </Link>
+                      <Link to="/register" className="text-xl text-black dark:text-black px-6 py-1 mt-3 rounded-lg border border-black transition-colors hover:bg-sky-200 hover:text-white duration-300 block no-underline hover:no-underline">
+                        <span>Regístrate</span>
+                      </Link>
+                    </>
+                  )}
+                  {isAuthenticated && (
+                    <button
+                      onClick={logout}
+                      className="text-xl text-black dark:text-black px-6 py-1 mt-3 rounded-lg border border-black transition-colors hover:bg-sky-200 hover:text-white duration-300 block no-underline hover:no-underline"
+                    >
+                      <span>Cerrar sesión</span>
+                    </button>
+                  )}
                 </div>
                 <div className="hidden lg:flex items-center">
-                  <Link to="/login" className="text-xl text-black dark:text-black px-6 py-1 rounded-lg border border-black hover:bg-sky-200 hover:text-white transition-colors duration-300 no-underline hover:no-underline">
-                    Ingresa
-                  </Link>
-                  <Link to="/register" className="text-xl text-black dark:text-black px-6 py-1 rounded-lg ml-4 border border-black hover:bg-sky-200 hover:text-white transition-colors duration-300 no-underline hover:no-underline">
-                    Regístrate
-                  </Link>
+                  {!isAuthenticated && (
+                    <>
+                      <Link to="/login" className="text-xl text-black dark:text-black px-6 py-1 rounded-lg border border-black hover:bg-sky-200 hover:text-white transition-colors duration-300 no-underline hover:no-underline">
+                        Ingresa
+                      </Link>
+                      <Link to="/register" className="text-xl text-black dark:text-black px-6 py-1 rounded-lg ml-4 border border-black hover:bg-sky-200 hover:text-white transition-colors duration-300 no-underline hover:no-underline">
+                        Regístrate
+                      </Link>
+                    </>
+                  )}
+                  {isAuthenticated && (
+                    <button
+                      onClick={logout}
+                      className="text-xl text-black dark:text-black px-6 py-1 rounded-lg ml-4 border border-black hover:bg-sky-200 hover:text-white transition-colors duration-300 no-underline hover:no-underline"
+                    >
+                      Cerrar sesión
+                    </button>
+                  )}
                 </div>
               </div>
             </div>

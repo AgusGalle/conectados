@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { Dropdown } from 'react-bootstrap';
 import { useAuth } from '../../context/UserContext';
 
 const Navbar = () => {
-  const { isAuthenticated, logout } = useAuth();
+  const { isAuthenticated, logout, user } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
- 
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -26,9 +26,9 @@ const Navbar = () => {
         <div className="container px-6 py-3 mx-auto lg:flex lg:justify-between lg:items-center">
           <div className="flex items-center justify-between">
             <div className="flex items-center">
-              <a href="/">
+              <Link to="/">
                 <img className="w-auto h-8 sm:h-16" src="https://i.postimg.cc/137hMjd6/LOGO111.png" alt="Logo" />
-              </a>
+              </Link>
               <span className="ml-3 text-lg sm:text-2xl text-black dark:text-black"><b>CONTRATALO</b></span>
             </div>
             <div className="flex lg:hidden">
@@ -84,6 +84,18 @@ const Navbar = () => {
               <a onClick={() => handleNavigation('/contrata')} className="block px-1 py-2 mt-2 text-xl text-black rounded-lg dark:text-black lg:mx-4 lg:my-0 no-underline hover:no-underline">
                 <span className="hover:text-sky-200">Contrata</span>
               </a>
+              {isAuthenticated && user?.role === 'admin' && (
+                <Dropdown className="ml-4">
+                  <Dropdown.Toggle variant="secondary" id="dropdown-basic">
+                    Admin
+                  </Dropdown.Toggle>
+                  <Dropdown.Menu>
+                    <Dropdown.Item onClick={() => navigate('/admin/create')}>
+                      Agregar Servicio
+                    </Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
+              )}
               <div className="flex items-center lg:ml-4">
                 <div className="lg:hidden">
                   {!isAuthenticated && (

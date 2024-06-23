@@ -6,6 +6,9 @@ import CreateServiceForm from './components/Services/CreateServiceForm';
 import { ServiceProvider } from './context/ServiceContext';
 import { UserProvider } from './context/UserContext';
 import Register from './pages/Register';
+import AdminPage from './components/Admin/Admin';
+import ProtectedRouteAdmin from "./protectecRoute/ProtectedRouteAdmin";
+import ProtectedRouteUser from './protectecRoute/ProtectedRouteUser'
 
 function App() {
   return (
@@ -18,7 +21,13 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-           <Route path="/create" element={<CreateServiceForm />} /> {/*poner en la protected route */}
+          <Route element={<ProtectedRouteAdmin/>} >
+            <Route path="/admin" element={<AdminPage />} />
+            <Route path="/admin/create" element={<CreateServiceForm />} />
+          </Route>
+           <Route element={<ProtectedRouteUser/>}>
+
+           </Route>
         </Routes>
       </main>
       </ServiceProvider>

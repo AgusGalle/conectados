@@ -15,12 +15,14 @@ export const useServices = () => {
 export const ServiceProvider = ({ children }) => {
     const [errors, setErrors] = useState("");
     const [services, setServices] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     const createService = async (service) => {
         try {
             const res = await axios.post('/services/create', service);
             if (res.status === 200 || res.status === 201) {
                 alertCustom('Éxito', 'Servicio creado exitosamente', 'success');
+                setServices(prevServices => [...prevServices, res.data]);
             } else {
                 alertCustom('Upps', 'El servicio se creó, pero se recibió un código de estado inesperado.', 'warning');
             }
@@ -31,6 +33,7 @@ export const ServiceProvider = ({ children }) => {
     };
 
     const getAllServices = async () => {
+        setLoading(true);
         try {
             const res = await axios.get('/services/getAll');
             setServices(res.data);
@@ -39,12 +42,16 @@ export const ServiceProvider = ({ children }) => {
                 error.response?.data?.message ||
                 alertCustom("Upps", "Ha ocurrido un error al traer los servicios.", "error")
             );
+        } finally {
+            setLoading(false);
         }
     };
 
     const deleteService = async (id) => {
         try {
             await axios.delete(`/services/delete/${id}`);
+            setServices(prevServices => prevServices.filter(service => service._id !== id));
+            alertCustom('Éxito', 'Servicio eliminado correctamente', 'success');
         } catch (error) {
             alertCustom('Error', 'Ha ocurrido un error al eliminar el servicio', 'error');
         }
@@ -52,18 +59,11 @@ export const ServiceProvider = ({ children }) => {
 
     const editService = async (id, updatedService) => {
         try {
-            await axios.patch(`/services/edit/${id}`, updatedService);
+            const res = await axios.patch(`/services/edit/${id}`, updatedService);
+            setServices(prevServices => prevServices.map(service => (service._id === id ? res.data : service)));
+            alertCustom('Éxito', 'Servicio editado exitosamente', 'success');
         } catch (error) {
             alertCustom('Error', 'Ha ocurrido un error al editar el servicio', 'error');
-        }
-    };
-
-    const getById = async (id) => {
-        try {
-            const res = await axios.get(`/services/getById/${id}`);
-            return res.data;
-        } catch (error) {
-            throw new Error("Error al obtener el servicio por ID");
         }
     };
 
@@ -85,9 +85,9 @@ export const ServiceProvider = ({ children }) => {
                 getAllServices,
                 deleteService,
                 editService,
-                getById,
                 services,
                 errors,
+                loading
             }}
         >
             {children}

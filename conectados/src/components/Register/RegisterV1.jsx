@@ -33,18 +33,18 @@ const RegisterUser = () => {
   const handleShow = () => setShow(true);
 
   return (
-    <Container className="bg-white mt-5 w-75 border py-5">
-      <Row className="justify-content-center">
-        <Col xs={12} md={8} lg={6}>
-          {registerErrors.map((error, i) => (
+    <Container fluid className="d-flex justify-content-center align-items-center vh-100 mt-5">
+      <Row className="w-100 justify-content-center">
+        <Col xs={12} md={8} lg={4} className="bg-white p-5 rounded shadow">
+          {registerErrors && registerErrors.map((error, i) => (
             <Alert key={i} variant="danger">
               {error}
             </Alert>
           ))}
-          <h3 className="text-black mt-3 pt-3">Formulario de Registro</h3>
-          <Form onSubmit={onSubmit} >
+          <h3 className="text-black mt-3 pt-3 text-center">Formulario de Registro</h3>
+          <Form onSubmit={onSubmit}>
             <Form.Group>
-              <Form.Label htmlFor="name"></Form.Label>
+              <Form.Label htmlFor="name">Nombre y Apellido</Form.Label>
               <Form.Control
                 type="text"
                 id="name"
@@ -59,7 +59,7 @@ const RegisterUser = () => {
                     value: nameRegex,
                     message: "El nombre es invalido",
                   },
-                  maxLenght: {
+                  maxLength: {
                     value: 40,
                     message: "El nombre no puede tener más de 40 caracteres",
                   },
@@ -70,7 +70,7 @@ const RegisterUser = () => {
               </Form.Control.Feedback>
             </Form.Group>
             <Form.Group>
-              <Form.Label htmlFor="userName"></Form.Label>
+              <Form.Label htmlFor="userName">Nombre de usuario</Form.Label>
               <Form.Control
                 id="userName"
                 type="text"
@@ -88,7 +88,7 @@ const RegisterUser = () => {
               </Form.Control.Feedback>
             </Form.Group>
             <Form.Group>
-              <Form.Label htmlFor="email"></Form.Label>
+              <Form.Label htmlFor="email">Correo</Form.Label>
               <Form.Control
                 id="email"
                 type="email"
@@ -110,7 +110,7 @@ const RegisterUser = () => {
               </Form.Control.Feedback>
             </Form.Group>
             <Form.Group>
-              <Form.Label htmlFor="dni"></Form.Label>
+              <Form.Label htmlFor="dni">DNI (sin puntos)</Form.Label>
               <Form.Control
                 id="dni"
                 type="text"
@@ -128,7 +128,7 @@ const RegisterUser = () => {
               </Form.Control.Feedback>
             </Form.Group>
             <Form.Group>
-              <Form.Label htmlFor="password"></Form.Label>
+              <Form.Label htmlFor="password">Contraseña</Form.Label>
               <Form.Control
                 id="password"
                 type={showPassword ? "text" : "password"}
@@ -151,7 +151,7 @@ const RegisterUser = () => {
               </Form.Control.Feedback>
             </Form.Group>
             <Form.Group>
-              <Form.Label htmlFor="passwordCheck"></Form.Label>
+              <Form.Label htmlFor="passwordCheck">Repite la Contraseña</Form.Label>
               <Form.Control
                 id="passwordCheck"
                 type={showPassword ? "text" : "password"}
@@ -202,7 +202,7 @@ const RegisterUser = () => {
                 <span className="text-danger">{errors.checkbox.message}</span>
               )}
             </Form.Group>
-            <Modal show={show} onHide={handleClose} backdrop="static" >
+            <Modal show={show} onHide={handleClose} backdrop="static">
               <Modal.Header closeButton>
                 <Modal.Title>Términos y Condiciones</Modal.Title>
               </Modal.Header>
@@ -250,18 +250,18 @@ const RegisterUser = () => {
               </Modal.Footer>
             </Modal>
             <Button
-              variant="warning"
+              variant="primary"
               type="submit"
-              className="btnRegister mt-3"
+              className="btnRegister mt-3 w-100"
             >
               Registrarse
             </Button>
           </Form>
-            <Row className="mt-4">
-              <Col xs={12} md={10} lg={6} className="text-black">
-                Ya tienes una cuenta?
+            <Row className="mt-4 text-center">
+              <Col xs={12} className="text-black">
+                ¿Ya tienes una cuenta?
               </Col>
-              <Col xs={12} md={10} lg={6} className="text-md-right">
+              <Col xs={12}>
                 <Link to="/login" className="text-dark iniciarSesion">
                   Iniciar sesión
                 </Link>

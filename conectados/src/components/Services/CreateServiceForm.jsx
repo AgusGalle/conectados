@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Form, Button, Table, Alert, Row, Col } from 'react-bootstrap';
 import { useServices } from '../../context/ServiceContext';
+import { FaHeart, FaRegHeart } from 'react-icons/fa';
 
 const CreateServiceForm = () => {
-    const { services, createService, deleteService, editService, getAllServices, loading, error } = useServices();
+    const { services, createService, deleteService, editService, toggleFavorite, getAllServices, loading, error } = useServices();
     const [formData, setFormData] = useState({
         nombre: '',
         imagenUrl: '',
@@ -58,7 +59,6 @@ const CreateServiceForm = () => {
         });
         setSubmitButtonText('Agregar Servicio');
     };
-   
 
     const handleDelete = async (id) => {
         await deleteService(id);
@@ -67,6 +67,10 @@ const CreateServiceForm = () => {
     const handleEdit = (index) => {
         setEditIndex(index);
         setSubmitButtonText('Editar Servicio');
+    };
+
+    const handleToggleFavorite = async (id, isFavorite) => {
+        await toggleFavorite(id, !isFavorite);
     };
 
     const handleCancelEdit = () => {
@@ -127,6 +131,9 @@ const CreateServiceForm = () => {
                                         <td>
                                             <Button variant="danger" className='mx-1' onClick={() => handleDelete(service._id)}>Eliminar</Button>
                                             <Button variant="warning" className='mx-1' onClick={() => handleEdit(index)}>Editar</Button>
+                                            <Button variant="info" className='mx-1 py-2' onClick={() => handleToggleFavorite(service._id, service.isFavorite)}>
+                                                {service.isFavorite ? <FaHeart color="red" /> : <FaRegHeart />}
+                                            </Button>
                                         </td>
                                     </tr>
                                 ))}

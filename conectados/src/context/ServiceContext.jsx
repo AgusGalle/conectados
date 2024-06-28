@@ -67,6 +67,16 @@ export const ServiceProvider = ({ children }) => {
         }
     };
 
+    const toggleFavorite = async (id, isFavorite) => {
+        try {
+            const res = await axios.patch(`/services/favorite/${id}`, { isFavorite });
+            setServices(prevServices => prevServices.map(service => (service._id === id ? res.data : service)));
+            alertCustom('Éxito', 'Estado de favorito actualizado', 'success');
+        } catch (error) {
+            alertCustom('Error', 'Ha ocurrido un error al actualizar el estado de favorito', 'error');
+        }
+    };
+
     useEffect(() => {
         getAllServices();
     }, []);
@@ -85,6 +95,7 @@ export const ServiceProvider = ({ children }) => {
                 getAllServices,
                 deleteService,
                 editService,
+                toggleFavorite,
                 services,
                 errors,
                 loading

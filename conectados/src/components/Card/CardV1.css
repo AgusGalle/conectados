@@ -1,0 +1,23 @@
+.card-container {
+    perspective: 1000px;
+  }
+  
+  .card-content {
+    transition: transform 0.1s;
+    transform-style: preserve-3d;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-content .card-img-top {
+    transition: transform 0.1s;
+    transform-style: preserve-3d;
+  }
+  
+  .card-content img {
+    border-radius: 10px 10px 0 0;
+  }
+

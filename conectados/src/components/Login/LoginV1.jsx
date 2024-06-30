@@ -1,21 +1,26 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Container, Form, Button, Alert, Row, Col } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '../../context/UserContext'; 
+import { useAuth } from '../../context/UserContext';
 
 const LoginV1 = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const { signin, errors: signinErrors, isAuthenticated } = useAuth();
   const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
 
   useEffect(() => {
     if (isAuthenticated) navigate("/");
-  }, [isAuthenticated]);
-  
+  }, [isAuthenticated, navigate]);
+
   const onSubmit = handleSubmit((data) => {
     signin(data);
   });
+
+  const toggleShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
 
   return (
     <Container fluid className="d-flex justify-content-center align-items-center vh-100">
@@ -51,7 +56,7 @@ const LoginV1 = () => {
             <Form.Group controlId="password" className="mt-3">
               <Form.Label>Password</Form.Label>
               <Form.Control
-                type="password"
+                type={showPassword ? "text" : "password"}
                 placeholder="Contraseña"
                 className={errors.password ? "is-invalid" : ""}
                 {...register("password", {
@@ -64,6 +69,13 @@ const LoginV1 = () => {
               <Form.Control.Feedback type="invalid">
                 {errors.password?.message}
               </Form.Control.Feedback>
+            </Form.Group>
+            <Form.Group controlId="showPassword" className="mt-3">
+              <Form.Check 
+                type="checkbox" 
+                label="Mostrar contraseña" 
+                onChange={toggleShowPassword} 
+              />
             </Form.Group>
             <Form.Group controlId="rememberMe" className="mt-3">
               <Form.Check type="checkbox" label="Remember Me" />

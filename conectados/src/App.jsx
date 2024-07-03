@@ -8,6 +8,7 @@ import { UserProvider } from './context/UserContext';
 import Register from './pages/Register';
 import Contrata from './pages/Contrata';
 import AdminPage from './components/Admin/Admin';
+import WorkPage from './pages/WorkPage';
 import ProtectedRouteAdmin from "./protectecRoute/ProtectedRouteAdmin";
 import ProtectedRouteUser from './protectecRoute/ProtectedRouteUser'
 
@@ -23,6 +24,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path='/contrata' element={<Contrata/>}/>
+          <Route path='/trabaja' element={<WorkPage/>}/>
           <Route element={<ProtectedRouteAdmin/>} >
             <Route path="/admin" element={<AdminPage />} />
             <Route path="/admin/create" element={<CreateServiceForm />} />
